@@ -1,0 +1,105 @@
+{% extends 'layout.html.twig' %}
+
+{% block site_content %}
+
+<div class="center_title_bar">Últimos produtos adicionados</div>
+
+{% for product in products %}
+<div class="prod_box">
+    <div class="top_prod_box"></div>
+
+    <div class="center_prod_box">
+        <div class="product_title">
+            <a href="/details/{{ product.slug }}">
+                {{ product.name }}
+            </a>
+        </div>
+    </div>
+
+    <div class="product_image" style="text-align: center">
+        <a href="/details/{{ product.slug }}">
+            <img src="{{ site_url() }}/{{ product.photo }}" alt="{{ product.name }}" height="90" width="90">
+        </a>
+    </div>
+
+    <div class="prod_price" style="text-align: center">
+        {% if (product.sale == 1) %}
+            <span class="reduce"> R$ {{ product.value | number_format(2, ',', '.') }}</span>
+            <span class="price">R$ {{ product.sale_value | number_format(2, ',', '.') }}</span>
+
+        {% else %}
+            R$ {{ product.value | number_format(2, ',', '.') }}
+        {% endif %}
+    </div>
+
+    <div class="bottom_prod_box"></div>
+
+    <div class="prod_details_tab">
+        <a href="#" class="btn-add-cart" title="header=[Adicionar ao carrinho] body=[&nbsp;] fade=[on]">
+            <img src="{{ site_url() }}/assets/images/cart.gif" alt="" class="left_bt">
+        </a>
+
+        {% if (product.feature == 1) %}
+            <a href="#" title="header=[Destaque] body=[&nbsp;] fade=[on]">
+                <img src="{{ site_url() }}/assets/images/favs.gif" alt="" border="0" class="left_bt" />
+            </a>
+        {% endif %}
+         {% if (product.gift == 1) %}
+            <a href="#" title="header=[Presente] body=[&nbsp;] fade=[on]">
+                <img src="{{ site_url() }}/assets/images/favorites.gif" alt="" border="0" class="left_bt" />
+            </a>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+<div class="center_title_bar">Produtos em promoção</div>
+
+{% for productSale in productsSale %}
+<div class="prod_box">
+    <div class="top_prod_box"></div>
+
+    <div class="center_prod_box">
+        <div class="product_title">
+            <a href="/details/{{ productSale.slug }}">
+                {{ productSale.name }}
+            </a>
+        </div>
+    </div>
+
+    <div class="product_image" style="text-align: center">
+        <a href="/details/{{ productSale.slug }}">
+            <img src="{{ site_url() }}/{{ productSale.photo }}" alt="{{ productSale.name }}" height="90" width="90">
+        </a>
+    </div>
+
+    <div class="prod_price" style="text-align: center">
+        {% if (productSale.sale == 1) %}
+            <span class="reduce"> R$ {{ productSale.value | number_format(2, ',', '.') }}</span>
+            <span class="price"> R$ {{ productSale.sale_value | number_format(2, ',', '.') }}</span>
+
+        {% else %}
+            R$ {{ productSale.value | number_format(2, ',', '.') }}
+        {% endif %}
+    </div>
+
+    <div class="bottom_prod_box"></div>
+
+    <div class="prod_details_tab">
+
+
+        {% if (productSale.feature == 1) %}
+            <a href="#" title="header=[Destaque] body=[&nbsp;] fade=[on]">
+                <img src="{{ site_url() }}/assets/images/favs.gif" alt="" border="0" class="left_bt" />
+            </a>
+        {% endif %}
+        {% if (productSale.gift == 1) %}
+            <a href="#" title="header=[Presente] body=[&nbsp;] fade=[on]">
+                <img src="{{ site_url() }}/assets/images/favorites.gif" alt="" border="0" class="left_bt" />
+            </a>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

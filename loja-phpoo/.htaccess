@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Garantir que o diretório /public seja acessado diretamente
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+# Permitir acesso aos arquivos dentro de /public/assets
+RewriteRule ^assets/(.*)$ /public/assets/$1 [L]

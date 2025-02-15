@@ -1,0 +1,36 @@
+<div class="shopping_cart">
+    <div class="cart_title">Carrinho de compras</div>
+    <div class="cart_details">
+        <span id="products_cart"><!-- número produtos no carrinho --></span> <br>
+        <span class="border_cart"></span>Total: <span class="price"> <!-- total de compras do carrinho--></span>
+    </div>
+    <div class="cart_icon">
+        <a href="" title="header=[Checkout] body=[&nbsp;] fade=[on]">
+            <img src="{{ site_url() }}/assets/images/shoppingcart.png" alt="" width="48" height="48" border="0">
+        </a>
+    </div>
+</div>
+
+<div class="title_box">Novidades</div>
+<div class="border_box">
+    <div class="product_title">{{ newProduct().name }}</div>
+    <div class="product_image">
+        <a href="/details/{{ newProduct().slug }}">
+            <img width="90" height="90" border="0" src="{{ site_url() }}/{{ newProduct().photo }}"/>
+        </a>
+    </div>
+    <div class="prod_price">
+        {% if (newProduct().sale == 1) %}
+            <span class="reduce"> R$ {{ newProduct().value | number_format(2, ',', '.') }}</span>
+            <span class="price">R$ {{ newProduct().sale_value | number_format(2, ',', '.') }}</span>
+        {% else %}
+            R$ {{ newProduct().value | number_format(2, ',', '.') }}
+        {% endif %}
+    </div>
+</div>
+
+<div class="title_box">Marcas</div>
+<!-- include das marcas -->
+<div class="banner_ads">
+    <!-- banner de promição, propaganda -->
+</div>

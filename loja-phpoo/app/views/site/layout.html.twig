@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.8/components/table.min.css" integrity="sha512-8Y4kN+b0zlxC0elXbRZk98cJ69Y1qhsYnZlpOOGTmENpdTwkoY5JDN8rAv9Q/B9TauEXBtVanUE3/c7CR1MwIg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.8/components/button.min.css" integrity="sha512-0sx/w7Rxh8e5D8+XR/o57n+OVvi5uVUKaEjKszgBxpmdh/8OUBTFwRMRkg31/jTjJrR66NuP/4YT5kdtkATIzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.8/components/form.min.css" integrity="sha512-kEsy1Lmw59AiJ8hTf1IGqXVVvVzvBdmGg85e5NZ72QM2icaplzIwEsrne2dXiE4c3Pmvj676/qvLGWci0+XPjA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="http://localhost:8000/assets/css/style.css">
+
+    <script type="text/javascript" src="{{ site_url() }}/assets/js/box-over.js"></script>
+</head>
+<body>
+    <div id="main_container">
+        <div class="top_bar">
+            <!-- include do top -->
+            {% include 'include/site_header.html.twig' %}
+            <div id="main_content">
+                <div id="menu_tab">
+                    <!-- include do menu -->
+                    {% include 'include/site_menu.html.twig' %}
+                </div>
+                <div class="crumb_navigation">
+                    {{ breadCrumb() | raw }}
+                </div>
+                <div class="left_content">
+                    <div class="title_box">Categorias</div>
+                    <ul class="left_menu">
+                        <!-- include left menu-->
+                        {% include 'include/site_left_menu.html.twig' %}
+                    </ul>
+                    <div class="title_box">Promoção</div>
+                    <div class="border_box">
+                        {% for saleProduct in saleProduct()%}
+                            <div class="product_title">{{ saleProduct.name }}</div>
+                            <div class="product_image">
+                                <a href="">
+                                    <img src="{{ site_url() }}/{{ saleProduct.photo }}" alt="{{ saleProduct.name }}" width="90" height="90">
+                                </a>
+                            </div>
+                            <div class="prod_price">
+                                 {% if (saleProduct.sale == 1) %}
+                                    <span class="reduce"> R$ {{ saleProduct.value | number_format(2, ',', '.') }}</span>
+                                    <span class="price">R$ {{ saleProduct.sale_value | number_format(2, ',', '.') }}</span>
+
+                                {% else %}
+                                    R$ {{ saleProduct.value | number_format(2, ',', '.') }}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="title_box">Newsletter</div>
+                    <div class="border_box">
+                        <input type="text" name="newsletter" class="newsletter" value="Seu email"/>
+                        <a href="" class="join">Cadastrar email</a>
+                        <div class="banner_adds">
+                            <a href="">
+                                <!-- banner promoção, propaganda -->
+                                <img src="{{ site_url() }}/assets/images/bann2.jpg" alt=""  border="0"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center_content">
+                        {% block site_content %}{% endblock %}
+                </div>
+
+                <div class="right_content">
+                    {% include 'include/site_right_menu.html.twig' %}
+                </div>
+
+            </div>
+
+            <div class="footer">
+                <div class="left_footer">
+                    <img src="{{ site_url() }}/assets/images/footer_logo.png" alt="">
+                </div>
+
+                <div class="center_footer">
+                    Loja asolucoesweb. Todos os direitos reservados {{ 'now'|date('d/m/Y') }} <br>
+                    <img src="{{ site_url() }}/assets/images/payment.gif" alt="">
+                </div>
+
+                <div class="right_footer">
+                    <a href="#">home</a> 
+                    <a href="#">about</a> 
+                    <a href="#">sitemap</a> 
+                    <a href="#">rss</a> 
+                    <a href="contact.html">contact us</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ site_url() }}/bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="{{ site_url() }}/assets/js/site/carrinho.js"></script>
+</body>
+</html>

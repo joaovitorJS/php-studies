@@ -1,0 +1,51 @@
+# Composer dependencies
+/vendor/
+composer.phar
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# PHP development files
+.php-cs-cache
+.php_cs.cache
+.php-cs-fixer.cache
+*.phpunit.result.cache
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+.DS_Store
+
+# Docker
+.docker/data/
+docker-compose.override.yml
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and Cache
+/logs/
+/cache/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build directories
+/build/
+/dist/
+/public/hot
+/public/storage
+/storage/*.key
+
+
+
+/docker/data
